@@ -1591,10 +1591,23 @@ class SimplePie
 							if (isset($this->data['headers']['last-modified']) || isset($this->data['headers']['etag']))
 							{
 								$headers = array();
-								if (isset($this->data['headers']['last-modified']))
-								{
-									$headers['if-modified-since'] = $this->data['headers']['last-modified'];
-								}
+                //
+                // Working around Twitter bug:
+                //  http://simplepie.org/wiki/faq/problematic_feeds#twitter
+                //
+                if (preg_match('/twitter.com/', $this->feed_url))
+                {
+                  //
+                  // Do not send Last-Modified
+                  //
+                }
+                else
+                {
+                  if (isset($this->data['headers']['last-modified']))
+                  {
+                    $headers['if-modified-since'] = $this->data['headers']['last-modified'];
+                  }
+                }
 								if (isset($this->data['headers']['etag']))
 								{
 									$headers['if-none-match'] = '"' . $this->data['headers']['etag'] . '"';
