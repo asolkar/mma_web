@@ -25,22 +25,50 @@ require_once('lib/functions.php');
 http_doc_type();
 
 ?>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <title>Welcome to mahesha.com</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <meta name="description" content="Mahesh Asolkar's Home page. This links to his blog and other stuff on the website" />
-  <meta name="keywords" content="Mahesh Asolkar, technology, art, linux, open source, mozilla, apple, music, photography" />
+  <link rel="stylesheet" type="text/css" href="reset.css">
+  <link rel="stylesheet" type="text/css" href="grid.css">
+  <link rel="stylesheet" type="text/css" href="screen.css">
 </head>
 <body>
-  <h1>Welcome to mahesha.com</h1>
 
+<!-- Header -->
+<div id="header" class="container_12">
+
+  <div id="twitter_status" class="grid_12 ">
+    <h1>Welcome to mahesha.com</h1>
+  </div>
+
+</div>
+
+<!-- Content -->
+<div id="content" class="container_12">
+
+  <div id="logo_image" class="grid_12 ">
+  </div>
+
+
+  <div id="my_feeds" class="grid_12  alpha omega">
 <?php
   echo show_feed('http://api.flickr.com/services/feeds/photos_public.gne?id=61292480@N00');
   echo show_feed("http://feeds2.feedburner.com/mahesha/tech");
   echo show_feed("http://twitter.com/statuses/user_timeline/12420422.rss");
   echo show_feed("https://github.com/asolkar.atom");
 ?>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<div id="footer" class="container_12">
+
+  <div id="site_meta" class="grid_12 ">
+  </div>
+
+</div>
+
 </body>
 </html>
 <?php
