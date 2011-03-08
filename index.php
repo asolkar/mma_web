@@ -16,7 +16,7 @@
 //
 // Include library of functions
 //
-require_once('lib/simplepie.inc');
+require_once('lib/simplepie/SimplePie.compiled.php');
 require_once('lib/functions.php');
 
 //
@@ -38,7 +38,9 @@ http_doc_type();
 <div id="header" class="container_12">
 
   <div id="twitter_status" class="grid_12 ">
-    <h1>Welcome to mahesha.com</h1>
+<?php
+  echo first_from_feed("http://twitter.com/statuses/user_timeline/12420422.rss");
+?>
   </div>
 
 </div>
@@ -46,17 +48,23 @@ http_doc_type();
 <!-- Content -->
 <div id="content" class="container_12">
 
-  <div id="logo_image" class="grid_12 ">
-  </div>
+  <!-- div id="logo_image" class="grid_12 ">
+  </div -->
 
 
-  <div id="my_feeds" class="grid_12  alpha omega">
-<?php
-  echo show_feed('http://api.flickr.com/services/feeds/photos_public.gne?id=61292480@N00');
-  echo show_feed("http://feeds2.feedburner.com/mahesha/tech");
-  echo show_feed("http://twitter.com/statuses/user_timeline/12420422.rss");
-  echo show_feed("https://github.com/asolkar.atom");
-?>
+  <div id="my_feeds" class="grid_12 alpha omega">
+    <div class="grid_4 alpha">
+<?php echo show_feed("http://feeds2.feedburner.com/mahesha/tech", 'My <span class="flair">Blog</span>'); ?>
+    </div>
+    <div class="grid_4">
+<?php echo show_feed("https://github.com/asolkar.atom"); ?>
+    </div>
+    <div class="grid_4 omega">
+<?php echo show_feed('http://api.flickr.com/services/feeds/photos_public.gne?id=61292480@N00'); ?>
+    </div>
+    <div class="grid_12 alpha omega">
+<?php echo show_feed("http://twitter.com/statuses/user_timeline/12420422.rss"); ?>
+    </div>
   </div>
 
 </div>
@@ -65,6 +73,13 @@ http_doc_type();
 <div id="footer" class="container_12">
 
   <div id="site_meta" class="grid_12 ">
+<?php
+if ($_SERVER['HTTP_DNT'] == 1) {
+?>
+<span id="will_not_track" title="DNT=1!">OK! I won't track you... ever!</span>
+<?php
+}
+?>
   </div>
 
 </div>

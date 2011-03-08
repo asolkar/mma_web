@@ -1,8 +1,65 @@
+/* General look */
 body {
   font-family: "Trebuchet MS", sans-serif;
   font-size: small;
+  background-color: #eee;
 }
 
 h1 {
   font-size: xx-large;
+}
+
+/* Logo image */
+/*#logo_image {*/
+#header {
+  height: 355px;
+  background-image: url(images/shell-back.png);
+}
+
+/* Twitter status */
+#twitter_status {
+  font-family: serif;
+  font-style: italic;
+  font-size: xx-large;
+  line-height: 1.3em;
+  text-align: center;
+  padding: 15px 5px 10px 5px;
+}
+#twitter_status a {
+  color: #777;
+  text-decoration: none;
+}
+#twitter_status .timestamp {
+  color: #ccc;
+  font-size: medium;
+}
+
+/* Feed list */
+#my_feeds a {
+  text-decoration : none;
+  color: #555;
+}
+
+#my_feeds h3 {
+  font-family: serif;
+  font-size: large;
+  padding-bottom: 5px;
+}
+#my_feeds h3 .flair {
+  font-style: italic;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+#my_feeds .timestamp {
+  font-size: x-small;
+  color: #aaa;
+}
+
+#footer {
+  margin-top: 1.7em;
+  text-align: center;
+}
+#will_not_track {
+  text-align: center;
+  font-size: x-small;
 }

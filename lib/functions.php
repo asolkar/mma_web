@@ -24,23 +24,46 @@ function http_doc_type() {
 
 }
 
-function show_feed($feed_url) {
-  $feed = new SimplePie($feed_url);
+function show_feed($feed_url, $feed_name = '') {
+  $feed = new SimplePie();
+  $feed->set_feed_url($feed_url);
+  $feed->init();
   $feed->handle_content_type();
 
   $feed_out = '';
 
   $feed_out .= '<a href="' . $feed->get_link() . '"'
-            . ' title="' . $feed->get_description()
-            . '"><h3><img src="' . $feed->get_favicon() . '"> '
-            . $feed->get_title() . '</h3></a>' . "\n" . '<ul>' . "\n";
+            . ' title="' . (($feed_name == '') ? $feed->get_description() : $feed->get_title() . " : " . $feed->get_description())
+            . '"><h3>' . (($feed_name == '') ? $feed->get_title() : $feed_name) . '</h3></a>' . "\n"
+            . '<ul>' . "\n";
+  # . '"><h3><img src="' . $feed->get_favicon() . '"> '
   foreach ($feed->get_items(0, 10) as $item) {
     $feed_out .= '  <li><a href="' . $item->get_permalink() . '">'
-              . $item->get_title() . '</a> <span style="font-size:x-small;color: #aaa">'
+              . $item->get_title() . '</a> <div class="timestamp">'
               . $item->get_date() . '</span></li>' . "\n";
   }
   $feed_out .= '</ul>' . "\n";
 
   return $feed_out;
+}
+
+function first_from_feed($feed_url) {
+  $feed = new SimplePie();
+  $feed->set_feed_url($feed_url);
+  $feed->init();
+  $feed->handle_content_type();
+
+  $first_out = '';
+
+  foreach ($feed->get_items(0, 1) as $item) {
+    $tweet = $item->get_title();
+    $tweet = preg_replace('/^asolkar:\s+/', '', $tweet);
+
+    $first_out .= '<a href="' . $item->get_permalink() . '">'
+              . $tweet . '</a> <div class="timestamp">'
+              . $item->get_date() . '</div>' . "\n";
+  }
+
+  return $first_out;
 }
 ?>
