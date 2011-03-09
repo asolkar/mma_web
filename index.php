@@ -31,16 +31,27 @@ http_doc_type();
   <link rel="stylesheet" type="text/css" href="reset.css">
   <link rel="stylesheet" type="text/css" href="grid.css">
   <link rel="stylesheet" type="text/css" href="screen.css">
+  <script src="jquery.js"></script>
+  <script src="functions.js"></script>
+
+  <script>
+
+  $(document).ready(function(){
+    latest_twitter_status();
+    twitter_feed();
+    github_repos();
+    blog_feed();
+  });
+
+  </script>
 </head>
 <body>
 
 <!-- Header -->
 <div id="header" class="container_12">
 
+  <!-- My twitter feed - http://twitter.com/statuses/user_timeline/12420422.rss -->
   <div id="twitter_status" class="grid_12 ">
-<?php
-  echo first_from_feed("http://twitter.com/statuses/user_timeline/12420422.rss");
-?>
   </div>
 
 </div>
@@ -48,22 +59,17 @@ http_doc_type();
 <!-- Content -->
 <div id="content" class="container_12">
 
-  <!-- div id="logo_image" class="grid_12 ">
-  </div -->
+  <div id="logo_image" class="grid_12 ">
+  mahesha<span id="dot">&#8226;</span>com
+  </div>
 
 
-  <div id="my_feeds" class="grid_12 alpha omega">
-    <div class="grid_4 alpha">
-<?php echo show_feed("http://feeds2.feedburner.com/mahesha/tech", 'My <span class="flair">Blog</span>'); ?>
+  <div id="my_feeds" class="grid_12 alpha omega feed_collection">
+    <div id="twitter_feed" class="grid_4 alpha feed">
     </div>
-    <div class="grid_4">
-<?php echo show_feed("https://github.com/asolkar.atom"); ?>
+    <div id="github_repos" class="grid_4 feed">
     </div>
-    <div class="grid_4 omega">
-<?php echo show_feed('http://api.flickr.com/services/feeds/photos_public.gne?id=61292480@N00'); ?>
-    </div>
-    <div class="grid_12 alpha omega">
-<?php echo show_feed("http://twitter.com/statuses/user_timeline/12420422.rss"); ?>
+    <div id="blog_feed" class="grid_4 omega feed">
     </div>
   </div>
 
@@ -71,7 +77,7 @@ http_doc_type();
 
 <!-- Footer -->
 <div id="footer" class="container_12">
-
+2011 &copy; Mahesh Asolkar
   <div id="site_meta" class="grid_12 ">
 <?php
 if ($_SERVER['HTTP_DNT'] == 1) {

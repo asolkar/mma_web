@@ -66,4 +66,49 @@ function first_from_feed($feed_url) {
 
   return $first_out;
 }
+
+function feed_to_json($feed_url, $feed_name = '') {
+  $feed = new SimplePie();
+  $feed->set_feed_url($feed_url);
+  $feed->init();
+  $feed->handle_content_type();
+
+  $feed_struct = array();
+
+  foreach ($feed->get_items(0, 10) as $item) {
+    $feed_item = array(
+      'url' => $item->get_permalink(),
+      'title' => $item->get_title(),
+      'published_on' => $item->get_date()
+    );
+    array_push($feed_struct, $feed_item);
+  }
+
+  return json_encode ($feed_struct);
+}
+
+
+function fetch ($service, $url) {
+
+  if ($service == 'twitter') {
+    $crl = curl_init();
+    curl_setopt($crl, CURLOPT_URL, $url);
+    curl_setopt($crl, CURLOPT_HTTPHEADER, array(
+      "User-Agent: OAuth gem v0.3.4.1",
+      "Authorization: OAuth oauth_nonce=\"BUOcsGWTzIQm6A1fLx52QsghcHNwq6R6GJDpg7q7aA\", oauth_signature_method=\"HMAC-SHA1\", oauth_timestamp=\"" . time() . "\", oauth_consumer_key=\"PqQWc3NhaJY8YSPL1FIw\", oauth_token=\"12420422-4hX7tz44d0bsCulobvoUSMOKe0TjoDZLGuTYSIM\", oauth_signature=\"3kck3BDxUYzVL9CCFnyMjPF1RXg%3D\", oauth_version=\"1.0\"",
+      "Host: api.local.twitter.com:9000"
+      )
+    );
+    curl_exec($crl);
+    curl_close($crl);
+  } elseif ($service == 'github') {
+    $crl = curl_init();
+    curl_setopt($crl, CURLOPT_URL, $url);
+    curl_exec($crl);
+    curl_close($crl);
+  } elseif ($service == 'feed') {
+    echo feed_to_json ($url);
+  }
+}
+
 ?>
