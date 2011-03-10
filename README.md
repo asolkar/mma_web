@@ -13,7 +13,13 @@ Webpage Should Include
 Libraries Used
 --------------
 
-* [SimplePie](http://simplepie.org "SimplePie Website") for RSS/ATOM feed parsing (Using as a submodule from git://github.com/simplepie/simplepie.git)
+* [SimplePie](http://simplepie.org "SimplePie Website") for RSS/ATOM feed parsing (Using as a submodule from `git://github.com/simplepie/simplepie.git`)
 * [jQuery](http://jquery.com "jQuery Website") and [jQuery UI](http://jqueryui.com "jQuery UI Website") for presentation
 * [960 Grid System](http://960.gs) for layout
 
+Fonts Used
+----------
+
+* [Astonished](http://www.fontsquirrel.com/fonts/Astonished)
+* [Gabrielle](http://www.fontsquirrel.com/fonts/Gabrielle)
+* [Puritan](http://www.fontsquirrel.com/fonts/Puritan-2.0)
