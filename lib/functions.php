@@ -33,7 +33,8 @@ function show_feed($feed_url, $feed_name = '') {
   $feed_out = '';
 
   $feed_out .= '<a href="' . $feed->get_link() . '"'
-            . ' title="' . (($feed_name == '') ? $feed->get_description() : $feed->get_title() . " : " . $feed->get_description())
+            . ' title="' . (($feed_name == '') ? $feed->get_description()
+                                               : $feed->get_title() . " : " . $feed->get_description())
             . '"><h3>' . (($feed_name == '') ? $feed->get_title() : $feed_name) . '</h3></a>' . "\n"
             . '<ul>' . "\n";
   # . '"><h3><img src="' . $feed->get_favicon() . '"> '
@@ -93,12 +94,6 @@ function fetch ($service, $url) {
   if ($service == 'twitter') {
     $crl = curl_init();
     curl_setopt($crl, CURLOPT_URL, $url);
-    curl_setopt($crl, CURLOPT_HTTPHEADER, array(
-      "User-Agent: OAuth gem v0.3.4.1",
-      "Authorization: OAuth oauth_nonce=\"BUOcsGWTzIQm6A1fLx52QsghcHNwq6R6GJDpg7q7aA\", oauth_signature_method=\"HMAC-SHA1\", oauth_timestamp=\"" . time() . "\", oauth_consumer_key=\"PqQWc3NhaJY8YSPL1FIw\", oauth_token=\"12420422-4hX7tz44d0bsCulobvoUSMOKe0TjoDZLGuTYSIM\", oauth_signature=\"3kck3BDxUYzVL9CCFnyMjPF1RXg%3D\", oauth_version=\"1.0\"",
-      "Host: api.local.twitter.com:9000"
-      )
-    );
     curl_exec($crl);
     curl_close($crl);
   } elseif ($service == 'github') {

@@ -8,7 +8,8 @@ var twitter_user_id = 'asolkar';
 // Javascript helpers
 //
 function latest_twitter_status() {
-  var tw_st_url = escape ("http://api.twitter.com/1/statuses/user_timeline.json?screen_name=" + twitter_user_id + "&count=1");
+  // var tw_st_url = escape ("http://api.twitter.com/1/statuses/user_timeline.json?screen_name=" + twitter_user_id + "&count=1");
+  var tw_st_url = escape ("http://identi.ca/api/statuses/user_timeline.json?screen_name=" + twitter_user_id + "&count=1");
   $.ajax({
     url: "api.php?s=twitter&u=" + tw_st_url,
     dataType: 'json',
@@ -18,23 +19,27 @@ function latest_twitter_status() {
       tweet = link_mentions(tweet);
       $('#twitter_status').html(
         tweet
-        + '<a href="http://twitter.com/asolkar/statuses/'
-        + data[0].id_str + '">'
-        + '<div class="timestamp">'
-        + data[0].created_at + '</div></a>');
+        // + '<a href="http://twitter.com/asolkar/statuses/'
+        // + data[0].id_str + '">'
+        + '<a href="http://identi.ca/notice/'
+        + data[0].id + '">'
+        + '<span class="timestamp">'
+        + data[0].created_at + '</span></a>');
+      // expand_links($('#twitter_status'));
     },
     error: function(data, txt_sts, err_code) {
-      alert (err_code + " : " + txt_sts);
+      // alert (err_code + " : " + txt_sts);
     }
   });
 }
 
 function twitter_feed() {
-  var tw_st_url = escape ("http://api.twitter.com/1/statuses/user_timeline.json?screen_name=" + twitter_user_id + "&count=10");
+  // var tw_st_url = escape ("http://api.twitter.com/1/statuses/user_timeline.json?screen_name=" + twitter_user_id + "&count=10");
+  var tw_st_url = escape ("http://identi.ca/api/statuses/user_timeline.json?screen_name=" + twitter_user_id + "&count=10");
   $.getJSON(
     "api.php?s=twitter&u=" + tw_st_url,
     function(data) {
-      var ht = "<h3>twitter @" + twitter_user_id + "</h3><ul>";
+      var ht = "<h3>identi.ca @" + twitter_user_id + "</h3><ul>";
       var idx;
       for (idx=0; idx<10; idx++) {
         var tweet = data[idx].text;
@@ -44,8 +49,10 @@ function twitter_feed() {
         ht += '<li>'
               + tweet
               + '<div class="timestamp">'
-              + '<a href="http://twitter.com/asolkar/statuses/'
-              + data[idx].id_str + '">'
+              // + '<a href="http://twitter.com/asolkar/statuses/'
+              // + data[idx].id_str + '">'
+              + '<a href="http://identi.ca/notice/'
+              + data[idx].id + '">'
               + data[idx].created_at + '</a></div></li>';
       }
       ht += "</ul>";
@@ -101,4 +108,19 @@ function link_urls (text) {
 function link_mentions (text) {
   var url_pattern = /@([a-z0-9_]+)/gi;
   return text.replace(url_pattern, "@<a href=\"http://twitter.com/$1\">$1</a>");
+}
+
+function expand_links(head) {
+  $(head)
+  .find('a')
+  .hover( function () {
+    $.ajax({
+      url: this.href,
+      statusCode: {
+        301: function () {
+          alert ("Link: " + this);
+        }
+      }
+    });
+  });
 }
