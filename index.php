@@ -16,8 +16,8 @@
 //
 // Include library of functions
 //
-require_once('lib/simplepie/SimplePie.compiled.php');
-require_once('lib/functions.php');
+require_once('web_lib/simplepie/SimplePie.compiled.php');
+require_once('web_lib/functions.php');
 
 //
 // Start the page
@@ -32,7 +32,7 @@ http_doc_type();
   <link rel="stylesheet" type="text/css" href="grid.css">
   <link rel="stylesheet" type="text/css" href="screen.css">
   <script src="jquery.js"></script>
-  <script src="functions.js"></script>
+  <script src="web_lib/functions.js"></script>
 
   <script>
 
