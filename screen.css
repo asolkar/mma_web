@@ -5,7 +5,8 @@
 }
 @font-face {
   font-family: "Status Choice";
-  src: url("fonts/Gabrielle.ttf");
+  /*src: url("fonts/Gabrielle.ttf");*/
+  src: url("fonts/ArchitectsDaughter.ttf");
 }
 @font-face {
   font-family: "Feed Head Choice";
@@ -49,7 +50,7 @@ h1 {
 #twitter_status {
   font-family: "Status Choice", serif;
   font-style: italic;
-  font-size: 36px;
+  font-size: 30px;
   line-height: 1.3em;
   text-align: center;
   padding: 15px 5px 10px 5px;
