@@ -111,6 +111,26 @@ h1 {
   background-color: #fff;
 }
 
+#refer_action {
+  font-size: 1.2em;
+  text-align: center;
+  line-height: 1.8em;
+  color: #fff;
+
+  margin: 10px 0 20px 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  box-shadow: 0 0 7px #aaa;
+  border-radius: 5px;
+  background-color: #999;
+}
+#refer_action a,
+#refer_action a:visited,
+#refer_action a:hover {
+  color: #fff;
+}
+
 #footer {
   color: #777;
   padding-top: 1.7em;

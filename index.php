@@ -18,6 +18,7 @@
 //
 require_once('web_lib/simplepie/SimplePie.compiled.php');
 require_once('web_lib/functions.php');
+require_once('functions.php');
 
 //
 // Start the page
@@ -63,6 +64,7 @@ http_doc_type();
   mahesha<span id="dot">&#8226;</span>com
   </div>
 
+  <?php referer_action() ?>
 
   <div id="my_feeds" class="grid_12 alpha omega feed_collection">
     <div id="twitter_feed" class="grid_4 alpha feed">
@@ -89,6 +91,17 @@ if ($_SERVER['HTTP_DNT'] == 1) {
   </div>
 
 </div>
+
+<!-- Google Analytics -->
+<script src="http://www.google-analytics.com/urchin.js"
+        type="text/javascript">
+</script>
+<script type="text/javascript">
+//<![CDATA[
+_uacct = "UA-70930-1";
+urchinTracker();
+//]]>
+</script>
 
 </body>
 </html>
